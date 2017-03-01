@@ -11,7 +11,9 @@ namespace CarRentalApi.Common
         void Delete<T>(T entity) where T : class;
         Task<bool> SaveAllAsync();
         bool SaveAll();
-
+        // Employees
+        IEnumerable<Employee> GetAllEmployees();
+        Employee GetEmployee(int id);
         // Camps
         IEnumerable<Camp> GetAllCamps();
         Camp GetCamp(int id);

@@ -31,6 +31,16 @@ namespace CarRentalApi.Common
             return ( _context.SaveChanges() ) > 0;
         }
 
+        public IEnumerable<Employee> GetAllEmployees()
+        {
+            return _context.Employees.Include(c => c.Department).ToList();
+        }
+
+        public Employee GetEmployee(int id)
+        {
+            return _context.Employees.FirstOrDefault(d => d.Id == id);
+        }
+
         public IEnumerable<Camp> GetAllCamps()
         {
             return _context.Camps
