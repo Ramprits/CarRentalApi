@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using MyCodeCamp.Data.Entities;
+using CarRentalApi.Entities;
 
-namespace MyCodeCamp.Data
+namespace CarRentalApi.Common
 {
   public class CampDbInitializer
   {
-    private CampContext _ctx;
+    private readonly CampContext _ctx;
 
     public CampDbInitializer(CampContext ctx)
     {
@@ -27,7 +25,7 @@ namespace MyCodeCamp.Data
       }
     }
 
-    List<Camp> _sample = new List<Camp>
+      private readonly List<Camp> _sample = new List<Camp>
     {
       new Camp()
       {

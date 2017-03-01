@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CarRentalApi.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using MyCodeCamp.Data.Entities;
 
-namespace MyCodeCamp.Data
+namespace CarRentalApi.Common
 {
   public class CampIdentityInitializer
   {
-    private RoleManager<IdentityRole> _roleMgr;
-    private UserManager<CampUser> _userMgr;
+    private readonly RoleManager<IdentityRole> _roleMgr;
+    private readonly UserManager<CampUser> _userMgr;
 
     public CampIdentityInitializer(UserManager<CampUser> userMgr, RoleManager<IdentityRole> roleMgr)
     {
