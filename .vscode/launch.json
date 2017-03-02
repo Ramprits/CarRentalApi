@@ -3,6 +3,7 @@
     "configurations": [
     
         {
+            //http://fizzylogic.nl/2016/11/22/ASP-NET-Core-debugging-tips-for-Visual-Studio-Code/
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
