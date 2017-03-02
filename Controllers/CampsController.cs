@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarRentalApi.Common;
 using CarRentalApi.Entities;
+using CarRentalApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -27,8 +30,8 @@ namespace CarRentalApi.Controllers
         {
             var camps = _reposetory.GetAllCamps();
             if(camps == null)
-                return NotFound("Camps not found");
-            return Ok(camps);
+                return NotFound($"Camps not found ");
+            return Ok(_mapper.Map<IEnumerable<CampsModel>>(camps));
         }
 
         [HttpGet("{id}" , Name = "newCamp")]
@@ -38,17 +41,19 @@ namespace CarRentalApi.Controllers
 
             if(camp == null)
                 return NotFound("camp not found ");
-            return Ok(camp);
+            return Ok(_mapper.Map<CampsModel>(camp));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Camp model)
+        public async Task<IActionResult> Post([FromBody] CampsModel model)
         {
-            _reposetory.Add(model);
+            var camp = _mapper.Map<Camp>(model);
+
+            _reposetory.Add(camp);
             if(await _reposetory.SaveAllAsync())
             {
-                var newUri = Url.Link("newCamp" , new { id = model.Id });
-                return Created(newUri , model);
+                var newUri = Url.Link("newCamp" , new { id = camp.Id });
+                return Created(newUri , _mapper.Map<CampsModel>(camp));
             }
             return BadRequest($"This is bad BadRequest");
         }

@@ -48,15 +48,16 @@ namespace CarRentalApi.Controllers
 
             if(employee == null)
                 return NotFound($"employee not found {id}");
-            return Ok(employee);
+            return Ok(_mapper.Map<EmployeeModel>(employee));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Employee model)
+        public async Task<IActionResult> Post([FromBody] EmployeeModel model)
         {
             try
             {
-                _reposetory.Add(model);
+                var employee = _mapper.Map<EmployeeModel>(model);
+                _reposetory.Add(employee);
                 if(await _reposetory.SaveAllAsync())
                 {
                     var newEmployee = Url.Link("newEmployee" , new { id = model.Id });
