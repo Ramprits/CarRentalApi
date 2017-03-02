@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarRentalApi.Common;
 using CarRentalApi.Entities;
+using CarRentalApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -28,7 +30,9 @@ namespace CarRentalApi.Controllers
         {
             try
             {
-                return Ok(_reposetory.GetAllEmployees());
+                var employee = _reposetory.GetAllEmployees();
+
+                return Ok(_mapper.Map<IEnumerable<EmployeeModel>>(employee));
             }
             catch(Exception)
             {
