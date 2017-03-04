@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CarRentalApi.Models
 {
-    public class CampsModel
+    public class CampModel
     {
         public string Moniker { get; set; }
         public string Name { get; set; }
